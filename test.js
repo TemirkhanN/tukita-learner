@@ -1,4 +1,5 @@
 
+// Basically a struct
 function TestQuestion(question, options, correctAnswer) {
     return {question: question, options: options, correct: correctAnswer};
 }
@@ -43,10 +44,6 @@ function Test(questionList) {
         result = [];
     };
 
-    this.start = () => {
-
-    };
-
     this.getCurrentQuestion = () => questions[currentQuestionNumber] ?? null;
 
     this.answer = (answer) => {
@@ -66,9 +63,7 @@ function Test(questionList) {
         ++currentQuestionNumber;
     };
 
-    this.getResult = () => {
-        return result;
-    };
+    this.getResult = () => result;
 
     construct(questionList);
 }
