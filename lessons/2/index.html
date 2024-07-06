@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Слова для вопросов</title>
+    <script type="text/javascript" src="/test.js"></script>
+</head>
+<style>
+    #test{
+        display: none;
+    }
+
+    #content{
+        font-size: 1.5em;
+    }
+
+    #test {
+        font-size: 5em;
+    }
+
+    input[type=radio] {
+        border: 0;
+        width: 5%;
+        height: 2em;
+    }
+</style>
+<script>
+    function startTest() {
+        const dictionary = {
+            'что': 'чуб',
+            'кто(он)': 'чув',
+            'кто(она)': 'чуй',
+            'какая': 'гьаштуй',
+            'какой': 'гьаштув',
+            'какое': 'гьаштуб',
+            'какие(люди)': 'гьаштубе',
+            'какие(вещи и животные)': 'гьаштуре',
+            'как': 'гьашта',
+            'когда': 'чунда',
+            'где': 'гьанкlу',
+            'куда': 'гьанди',
+        };
+        const test = createTranslationTest(dictionary);
+        test.start();
+
+        document.getElementById('content').style.display = 'none';
+        const testUI = document.getElementById('test');
+
+        const render = () => {
+            let content = '';
+            const currentQuestion = test.getCurrentQuestion();
+            if (currentQuestion === null) {
+                const result = test.getResult();
+                for (const questionNumber in result) {
+                    const pos = parseInt(questionNumber) + 1;
+                    content +=  '<p>'+ pos +'. '+result[questionNumber].question+'</p>';
+
+                    const givenAnswer = result[questionNumber].given;
+                    const correctAnswer = result[questionNumber].correct;
+                    if (givenAnswer === correctAnswer) {
+                        content +=  '<p>✅ '+givenAnswer+'</p>';
+                    } else {
+                        content += '<p>⚠️ '+givenAnswer+' (правильно: '+correctAnswer+')</p>';
+                    }
+                }
+
+                testUI.innerHTML = content;
+
+                return;
+            }
+
+            content += '<p>'+currentQuestion.question+'</p>';
+            for (const option in currentQuestion.options) {
+                const answer = currentQuestion.options[option];
+                content += '<div>' +
+                    '   <input type="radio" name="answer" value="'+answer+'"/>' +
+                    '   <label for="'+answer+'">'+answer+'</label>' +
+                    '</div>';
+            }
+
+            testUI.innerHTML = content;
+            testUI.style.display = 'block';
+
+            const radioButtons = testUI.querySelectorAll('input[type="radio"]');
+            radioButtons.forEach(radio => {
+                radio.addEventListener('click', () => {
+                    test.answer(radio.value);
+                    render();
+                });
+            });
+        }
+
+        render();
+    }
+</script>
+<body>
+<div id="content">
+    <p>Разучить слова. Просто постарайтесь их запомнить.</p>
+    <p>Вы будете часто ими пользоваться в разговоре, поэтому можно держать этот список под рукой.</p>
+
+    <p>что - чуб</p>
+    <p>кто(он) - чув</p>
+    <p>кто(она) - чуй</p>
+    <p>как - гьашта</p>
+    <p>когда - чунда</p>
+    <p>где - гьанкlу</p>
+    <p>куда - гьанди</p>
+    <p>какой - гьаштув</p>
+    <p>какая - гьаштуй</p>
+    <p>какое - гьаштуб</p>
+    <p>какие(люди) - гьаштубе</p>
+    <p>какие(вещи или животные) - гьаштуре</p>
+
+    <button onclick="startTest()">Пройти тест по материалу</button>
+</div>
+<div id="test">
+    <fieldset>
+        <legend></legend>
+        <div>
+            <input type="radio" id="huey" name="drone" value="huey" checked />
+            <label for="huey">Huey</label>
+        </div>
+
+        <div>
+            <input type="radio" id="dewey" name="drone" value="dewey" />
+            <label for="dewey">Dewey</label>
+        </div>
+
+        <div>
+            <input type="radio" id="louie" name="drone" value="louie" />
+            <label for="louie">Louie</label>
+        </div>
+    </fieldset>
+</div>
+
+
+</body>
+</html>
