@@ -11,7 +11,7 @@ function createTranslationTest(dictionary) {
         // Pseudo shuffling
         const tuWords = Object.values(dictionary).sort(pseudoShuffle);
         if (tuWords.length - 1 < amount) {
-            console.error("Requested more translations than we can provide");
+            throw new Error('Requested more translations than we can provide');
         }
 
         const result = [forWord];
@@ -31,6 +31,10 @@ function createTranslationTest(dictionary) {
     }
 
     return new Test(questions);
+}
+
+function createGrammarTest() {
+
 }
 
 function Test(questionList) {

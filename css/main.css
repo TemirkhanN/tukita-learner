@@ -153,6 +153,14 @@ code {
     font-family: 'Courier New', monospace;
 }
 
+.lang-tu {
+    color: #f77f00;
+}
+
+.example {
+    color: #94dbbd;
+}
+
 @media (max-width: 600px) {
     body {
         padding: 10px;
