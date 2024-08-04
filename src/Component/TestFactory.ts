@@ -1,6 +1,7 @@
 import ChoiceQuestion from "../Test/ChoiceQuestion";
 import {default as TestModel} from "../Test/Test";
 import Test from "./Test";
+import MultiChoiceQuestion from "../Test/MultiChoiceQuestion";
 
 export type Dictionary = {[key: string]: string};
 
@@ -46,6 +47,16 @@ export default class TestFactory {
         let questionNumber = 1;
         for (const question of test) {
             questions.push(new ChoiceQuestion((questionNumber++).toString(), question.text, question.choices, question.answer));
+        }
+
+        return new Test(new TestModel(questions));
+    }
+
+    public static createMultiChoiceTest(test: ChoiceTest) {
+        const questions = [];
+        let questionNumber = 1;
+        for (const question of test) {
+            questions.push(new MultiChoiceQuestion((questionNumber++).toString(), question.text, question.choices));
         }
 
         return new Test(new TestModel(questions));

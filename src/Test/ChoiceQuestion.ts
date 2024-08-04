@@ -28,6 +28,10 @@ export default class ChoiceQuestion implements Question<string>{
         this.providedAnswer = '';
     }
 
+    public isAnswered(): boolean {
+        return this.providedAnswer !== '';
+    }
+
     public render(onAnswer: (answer: string) => void): HTMLElement {
         if (this.isAnswered()) {
             return this.renderSummary();
@@ -71,9 +75,5 @@ export default class ChoiceQuestion implements Question<string>{
         block.innerHTML = content;
 
         return block;
-    }
-
-    private isAnswered() {
-        return this.providedAnswer !== '';
     }
 }

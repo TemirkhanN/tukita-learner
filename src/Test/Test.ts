@@ -1,23 +1,22 @@
-import type ChoiceQuestion from "ChoiceQuestion";
-
 export interface Question<T> {
     answer(answer: T): void;
     render(onAnswer: (answer: T) => void): HTMLElement;
     recallAnswer(): void;
+    isAnswered(): boolean;
 }
 
 export default class Test {
-    private readonly questions: ChoiceQuestion[];
+    private readonly questions: Question<any>[];
     private currentQuestionNumber: number;
-    private result: ChoiceQuestion[];
+    private result: Question<any>[];
 
-    constructor(questionList: ChoiceQuestion[]) {
+    constructor(questionList: Question<any>[]) {
         this.questions = questionList;
         this.currentQuestionNumber = 0;
         this.result = [];
     };
 
-    public getCurrentQuestion(): ChoiceQuestion | null {
+    public getCurrentQuestion(): Question<any> | null {
         return this.questions[this.currentQuestionNumber] ?? null;
     }
 
@@ -30,12 +29,13 @@ export default class Test {
         }
 
         currentQuestion.answer(answer);
-        this.result[this.currentQuestionNumber] = currentQuestion;
-
-        this.currentQuestionNumber += 1;
+        if (currentQuestion.isAnswered()) {
+            this.result[this.currentQuestionNumber] = currentQuestion;
+            this.currentQuestionNumber += 1;
+        }
     }
 
-    public getResult(): ChoiceQuestion[] {
+    public getResult(): Question<any>[] {
         return this.result;
     }
 
