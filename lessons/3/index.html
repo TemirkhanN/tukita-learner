@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Местоимения</title>
-    <script type="text/javascript" src="../../test.js"></script>
-    <script type="text/javascript" src="../../main.js"></script>
+    <script src="../../dist/bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 <style>
@@ -13,7 +12,7 @@
     }
 </style>
 <script>
-    const shortVersion = {
+    registerTranslationTest({
         'я': 'дини',
         'ты': 'мини',
         'он': 'гьов',
@@ -23,9 +22,7 @@
         'тобой': 'минди',
         'им': 'гьошуд',
         'ею': 'гьолъид',
-    };
-
-    const simpleTest = createTranslationTest(shortVersion);
+    });
 </script>
 <body>
 <div class="container">
@@ -137,7 +134,7 @@
             Чтобы сказать "Расул, мы идем к тебе" нужно использовать "ищи". Использовать местоимение "илълъи" для этой ситуации нельзя.
             Просто потому что это изменит смысл на "Расул, ты, я и мой брат идем к тебе".</p>
 
-        <button onclick="startTest(simpleTest)">Пройти упрощенный тест</button>
+        <button id="start-test">Пройти упрощенный тест</button>
     </div>
     <div id="test"></div>
     <footer>

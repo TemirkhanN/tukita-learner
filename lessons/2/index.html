@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Слова для вопросов</title>
-    <script type="text/javascript" src="../../test.js"></script>
-    <script type="text/javascript" src="../../main.js"></script>
+    <script src="../../dist/bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
 </head>
 <script>
-    const dictionary = {
-        'что': 'чуб',
-        'кто(он)': 'чув',
-        'кто(она)': 'чуй',
-        'какая': 'гьаштуй',
-        'какой': 'гьаштув',
-        'какое': 'гьаштуб',
-        'какие(люди)': 'гьаштубе',
-        'какие(вещи или животные)': 'гьаштуре',
-        'как': 'гьашта',
-        'когда': 'чунда',
-        'где': 'гьанкlу',
-        'куда': 'гьанди',
-    };
-    const test = createTranslationTest(dictionary);
+   registerTranslationTest({
+       'что': 'чуб',
+       'кто(он)': 'чув',
+       'кто(она)': 'чуй',
+       'какая': 'гьаштуй',
+       'какой': 'гьаштув',
+       'какое': 'гьаштуб',
+       'какие(люди)': 'гьаштубе',
+       'какие(вещи или животные)': 'гьаштуре',
+       'как': 'гьашта',
+       'когда': 'чунда',
+       'где': 'гьанкlу',
+       'куда': 'гьанди',
+   });
 </script>
 <body>
 <div class="container">
@@ -44,7 +42,7 @@
         <p>какие(люди) - гьаштубе</p>
         <p>какие(вещи или животные) - гьаштуре</p>
 
-        <button onclick="startTest(test)">Пройти тест</button>
+        <button id="start-test">Пройти тест</button>
     </div>
     <div id="test"></div>
     <footer>

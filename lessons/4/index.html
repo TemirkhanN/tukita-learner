@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Местоимения</title>
-    <script type="text/javascript" src="../../test.js"></script>
-    <script type="text/javascript" src="../../main.js"></script>
+    <script type="text/javascript" src="../../dist/bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <script>
-        const tasks = [
-            TestQuestion('Как сказать "Я мою вилку"?', ['Динди хlанква мунчида эгу', 'Дини хlанква мунчида эгу', 'Динди хlанква мунчида букlа', ''], 'Динди хlанква мунчида эгу'),
-            TestQuestion('Как сказать "Она купит молоко"?', ['Гьолъид шу бигьеда эгу', 'Минди шу бигьеда эгу', 'Гьов шу бигьибах букlа', 'Гьолъид шу бигьида букlа'], 'Гьолъид шу бигьеда эгу'),
-        ];
-
-        const test = new Test(tasks);
+        registerChoiceTest([
+            {text: 'Как сказать "Я мою вилку"?', choices: ['Динди хlанква мунчида эгу', 'Дини хlанква мунчида эгу', 'Динди хlанква мунчида букlа'], answer: 'Динди хlанква мунчида эгу'},
+            {text: 'Как сказать "Она купит молоко"?', choices: ['Гьолъид шу бигьеда эгу', 'Минди шу бигьеда эгу', 'Гьов шу бигьибах букlа', 'Гьолъид шу бигьида букlа'], answer: 'Гьолъид шу бигьеда эгу'}
+        ]);
     </script>
 </head>
 <body>
@@ -44,10 +41,10 @@
         4. Оно(сейчас) ест курицу.
         TODO для множественного числа
         <p></p>
-        <button onclick="startTest(test)">Пройти тест</button>
+        <button id="start-test">Пройти тест</button>
     </div>
     <div id="test"></div>
     <footer>
-        <a href="../2/">&larr; Урок 3: вопросительные слова</a> | <a href="../4/">Урок 4: первые предложения &rarr;</a>
+        <a href="../3/">&larr; Урок 3: Местоимения</a> | <a href="../5/">Урок 5: часто-используемые слова &rarr;</a>
     </footer>
 </div>
