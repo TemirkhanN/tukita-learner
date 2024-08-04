@@ -1,4 +1,6 @@
-export default class ChoiceQuestion {
+import {Question} from "./Test";
+
+export default class ChoiceQuestion implements Question<string>{
     private readonly id: string;
     private readonly text: string;
     private readonly options: string[];
