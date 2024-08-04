@@ -11,7 +11,7 @@ export default class Test {
         this.result = [];
     };
 
-    public getCurrentQuestion(): ChoiceQuestion|null {
+    public getCurrentQuestion(): ChoiceQuestion | null {
         return this.questions[this.currentQuestionNumber] ?? null;
     }
 
@@ -29,7 +29,15 @@ export default class Test {
         this.currentQuestionNumber += 1;
     }
 
-    public getResult(): ChoiceQuestion[]{
+    public getResult(): ChoiceQuestion[] {
         return this.result;
+    }
+
+    public reset(): void {
+        this.result = [];
+        this.currentQuestionNumber = 0;
+        for (const question of this.questions) {
+            question.recallAnswer();
+        }
     }
 }

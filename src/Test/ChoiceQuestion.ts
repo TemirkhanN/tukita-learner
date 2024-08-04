@@ -1,17 +1,19 @@
 export default class ChoiceQuestion {
-    private readonly question: string;
+    private readonly id: string;
+    private readonly text: string;
     private readonly options: string[];
     private readonly correctAnswer: string;
     private providedAnswer: string = '';
 
-    constructor(question: string, options: string[], correctAnswer: string) {
-        this.question = question;
+    constructor(id: string, question: string, options: string[], correctAnswer: string) {
+        this.id = id;
+        this.text = question;
         this.options = options;
         this.correctAnswer = correctAnswer;
     }
 
-    answer(answer: string): boolean {
-        if (this.providedAnswer !== "") {
+    public answer(answer: string): boolean {
+        if (this.isAnswered()) {
             throw new Error('Can not answer twice on the same question');
         }
 
@@ -20,19 +22,56 @@ export default class ChoiceQuestion {
         return answer === this.correctAnswer;
     }
 
-    public getText(): string {
-        return this.question;
+    public recallAnswer() {
+        this.providedAnswer = '';
     }
 
-    public getOptions(): string[] {
-        return this.options;
+    public render(onAnswer: (answer: string) => void): HTMLElement {
+        if (this.isAnswered()) {
+            return this.renderSummary();
+        }
+
+        const block = document.createElement("div");
+
+        let content = '';
+        content += '<p class="test-question">' + this.id + '. ' + this.text + '</p>';
+        for (const availableAnswer of this.options) {
+            // TODO I'm pretty sure something is wrong with labeling and unification
+            content += '<div class="answer-option">' +
+                '   <input type="radio" name="answer" value="' + availableAnswer + '"/>' +
+                '   <label for="answer">' + availableAnswer + '</label>' +
+                '</div>';
+        }
+
+        block.innerHTML = content;
+
+        const radioButtons = block.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach((radio: Element) => {
+            const elem: HTMLSelectElement = radio as HTMLSelectElement;
+            elem.addEventListener('click', () => onAnswer(elem.value));
+        });
+
+        return block;
     }
 
-    public getProvidedAnswer(): string {
-        return this.providedAnswer;
+    private renderSummary(): HTMLElement {
+        const block = document.createElement("div");
+        let content = '';
+
+        content += '<p>' + this.id + '. ' + this.text + '</p>';
+
+        if (this.providedAnswer === this.correctAnswer) {
+            content += '<p>✅ ' + this.providedAnswer + '</p>';
+        } else {
+            content += '<p>⚠️ ' + this.providedAnswer + ' (правильно: ' + this.correctAnswer + ')</p>';
+        }
+
+        block.innerHTML = content;
+
+        return block;
     }
 
-    public getCorrectAnswer() {
-        return this.correctAnswer;
+    private isAnswered() {
+        return this.providedAnswer !== '';
     }
 }

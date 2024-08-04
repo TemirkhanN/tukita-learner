@@ -33,8 +33,9 @@ export default class TestFactory {
         }
 
         const questions = [];
+        let questionNumber = 1;
         for (const word in dictionary) {
-            questions.push(new ChoiceQuestion('Как сказать "' + word + '"?', prepareOptions(dictionary[word], 3), dictionary[word]));
+            questions.push(new ChoiceQuestion((questionNumber++).toString(), 'Как сказать "' + word + '"?', prepareOptions(dictionary[word], 3), dictionary[word]));
         }
 
         return new Test(new TestModel(questions));
@@ -42,8 +43,9 @@ export default class TestFactory {
 
     public static createChoiceTest(test: ChoiceTest) {
         const questions = [];
+        let questionNumber = 1;
         for (const question of test) {
-            questions.push(new ChoiceQuestion(question.text, question.choices, question.answer));
+            questions.push(new ChoiceQuestion((questionNumber++).toString(), question.text, question.choices, question.answer));
         }
 
         return new Test(new TestModel(questions));

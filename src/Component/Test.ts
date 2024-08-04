@@ -1,5 +1,4 @@
 import {default as TestModel} from "../Test/Test";
-import ChoiceQuestion from "../Test/ChoiceQuestion";
 
 export default class Test {
     private testUI: HTMLElement;
@@ -16,58 +15,38 @@ export default class Test {
     }
 
     public render() {
-        const currentQuestion = this.test.getCurrentQuestion();
-        if (currentQuestion !== null) {
-            this.renderInput(currentQuestion);
-
-            return;
-        }
-
-        this.renderResult();
-    }
-
-    private renderResult(): void {
-        let content = '';
-        const result = this.test.getResult();
-        for (const questionNumber in result) {
-            const pos = parseInt(questionNumber) + 1;
-            const question = result[questionNumber];
-            content += '<p>' + pos + '. ' + question.getText() + '</p>';
-
-            const givenAnswer = question.getProvidedAnswer();
-            const correctAnswer = question.getCorrectAnswer();
-            if (givenAnswer === correctAnswer) {
-                content += '<p>✅ ' + givenAnswer + '</p>';
-            } else {
-                content += '<p>⚠️ ' + givenAnswer + ' (правильно: ' + correctAnswer + ')</p>';
-            }
-        }
-
-        this.testUI.innerHTML = content;
-    }
-
-    private renderInput(question: ChoiceQuestion): void {
-        let content = '';
-        content += '<p class="test-question">' + question.getText() + '</p>';
-        const availableOptions = question.getOptions();
-        for (const availableAnswer of availableOptions) {
-            // TODO I'm pretty sure something is wrong with labeling and unification
-            content += '<div class="answer-option">' +
-                '   <input type="radio" name="answer" value="' + availableAnswer + '"/>' +
-                '   <label for="answer">' + availableAnswer + '</label>' +
-                '</div>';
-        }
-
-        this.testUI.innerHTML = content;
         this.testUI.style.display = 'block';
 
-        const radioButtons = this.testUI.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach((radio: Element) => {
-            const elem: HTMLSelectElement = radio as HTMLSelectElement;
-            elem.addEventListener('click', () => {
-                this.test.answer(elem.value);
+        const currentQuestion = this.test.getCurrentQuestion();
+        let content: HTMLElement;
+        if (currentQuestion !== null) {
+            content = currentQuestion.render((answer: string): void => {
+                this.test.answer(answer);
                 this.render();
             });
+        } else {
+            content = this.renderResult();
+        }
+
+        this.testUI.replaceChildren(content);
+    }
+
+    private renderResult(): HTMLElement {
+        const div = document.createElement("div");
+
+        for (const question of this.test.getResult()) {
+            div.appendChild(question.render(() => {}));
+        }
+
+        const retryButton = document.createElement("button");
+        retryButton.innerText = 'Начать тест заново';
+        retryButton.addEventListener('click', () => {
+            this.test.reset();
+            this.render();
         });
+
+        div.appendChild(retryButton);
+
+        return div;
     }
 }
