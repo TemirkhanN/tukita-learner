@@ -4,6 +4,7 @@ export default class Tooltip {
     constructor() {
         let element: HTMLElement | null = document.getElementById('tooltip');
         if (element === null) {
+            console.log("it's null. chill")
             element = document.createElement('span');
             element.className = 'tooltip';
             element.id = 'tooltip';
