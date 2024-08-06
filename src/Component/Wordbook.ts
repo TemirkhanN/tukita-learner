@@ -1,4 +1,5 @@
 import Tooltip from "./Tooltip";
+import TestFactory from "./TestFactory";
 
 type Word = {
     origin: string;
@@ -23,14 +24,24 @@ const chapters: { [key: string]: Word[] } = {
             picture: "https://cdn-icons-png.freepik.com/256/1155/1155223.png"
         },
         {
+            origin: "Дада",
+            translation: "Папа",
+            picture: "https://cdn-icons-png.freepik.com/256/2202/2202112.png"
+        },
+        {
             origin: "Имадада",
             translation: "Дедушка",
             picture: "https://cdn-icons-png.freepik.com/256/5596/5596914.png"
         },
         {
-            origin: "Дада",
-            translation: "Папа",
+            origin: "Кунтlа",
+            translation: "Муж",
             picture: "https://cdn-icons-png.freepik.com/256/2202/2202112.png"
+        },
+        {
+            origin: "Гьарукlкlа",
+            translation: "Жена",
+            picture: "https://cdn-icons-png.freepik.com/256/4478/4478085.png"
         },
         {
             origin: "Яци",
@@ -38,19 +49,39 @@ const chapters: { [key: string]: Word[] } = {
             picture: "https://cdn-icons-png.freepik.com/256/8348/8348186.png"
         },
         {
+            origin: "Ваци",
+            translation: "Брат",
+            picture: "https://cdn-icons-png.freepik.com/256/4333/4333609.png"
+        },
+        {
+            origin: "Вохья",
+            translation: "Сын",
+            picture: "https://cdn-icons-png.freepik.com/256/7088/7088431.png"
+        },
+        {
             origin: "Йехьи",
             translation: "Дочь",
             picture: "https://cdn-icons-png.freepik.com/256/2465/2465392.png"
         },
         {
-            origin: "Вохьа",
-            translation: "Сын",
-            picture: "https://cdn-icons-png.freepik.com/256/7088/7088431.png"
+            origin: "Илеци",
+            translation: "Тётя(мамина сестра)",
+            picture: "https://cdn-icons-png.freepik.com/256/4244/4244102.png"
         },
         {
-            origin: "Ваци",
-            translation: "Брат",
-            picture: "https://cdn-icons-png.freepik.com/256/4333/4333609.png"
+            origin: "Имеци",
+            translation: "Тётя(папина сестра)",
+            picture: "https://cdn-icons-png.freepik.com/256/9119/9119027.png"
+        },
+        {
+            origin: "Илоци",
+            translation: "Дядя(мамин брат)",
+            picture: "https://cdn-icons-png.freepik.com/256/2599/2599265.png"
+        },
+        {
+            origin: "Имоци",
+            translation: "Дядя(папин брат)",
+            picture: "https://cdn-icons-png.freepik.com/256/3428/3428474.png"
         },
         {
             origin: "Хъизан",
@@ -80,11 +111,12 @@ export default class Wordbook {
         const blocks: HTMLElement[] = [];
 
         chapter = chapter as Chapter;
+        const words: {[key: string]: string} = {};
         for (const word of chapters[chapter]) {
-
             blocks.push(this.renderEntry(word));
+            words[word.translation] = word.origin;
         }
-
+        blocks.push(this.renderStartTestButton(words));
         this.UI.replaceChildren(...blocks);
         // TODO well, this does not belong here. Not like this at least
         // @ts-ignore
@@ -107,5 +139,16 @@ export default class Wordbook {
         block.addEventListener("mouseout", () => this.tooltip.hide());
 
         return block;
+    }
+
+    private renderStartTestButton(testWords: {[key: string]: string}): HTMLElement {
+        const button = document.createElement("button");
+        button.id = "start-test";
+        button.innerText = "Быстрый тест";
+        button.addEventListener("click", () => {
+            const test = TestFactory.createTranslationTest(testWords);
+            test.render();
+        })
+        return button;
     }
 }
