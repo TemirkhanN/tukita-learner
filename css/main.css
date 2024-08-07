@@ -53,6 +53,11 @@ p.test-question {
 
 #test .answer-option {
     font-size: 2.5em;
+    cursor: pointer;
+    border: 2px solid #535353;
+    padding: 5px;
+    margin: 5px 0;
+    text-align:center;
 }
 
 #test input[type=radio] {

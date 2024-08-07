@@ -43,18 +43,15 @@ export default class ChoiceQuestion implements Question<string>{
         content += '<p class="test-question">' + this.id + '. ' + this.text + '</p>';
         for (const availableAnswer of this.options) {
             // TODO I'm pretty sure something is wrong with labeling and unification
-            content += '<div class="answer-option">' +
-                '   <input type="radio" name="answer" value="' + availableAnswer + '"/>' +
-                '   <label for="answer">' + availableAnswer + '</label>' +
-                '</div>';
+            content += '<div class="answer-option" data-option="' + availableAnswer + '">' + availableAnswer + '</div>';
         }
 
         block.innerHTML = content;
 
-        const radioButtons = block.querySelectorAll('input[type="radio"]');
-        radioButtons.forEach((radio: Element) => {
-            const elem: HTMLSelectElement = radio as HTMLSelectElement;
-            elem.addEventListener('click', () => onAnswer(elem.value));
+        const choiceButtons = block.querySelectorAll('div[class="answer-option"]');
+        choiceButtons.forEach((choiceButton: Element) => {
+            const elem: HTMLSelectElement = choiceButton as HTMLSelectElement;
+            elem.addEventListener('click', () => onAnswer(elem.dataset.option as string));
         });
 
         return block;

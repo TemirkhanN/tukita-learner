@@ -1,5 +1,6 @@
 export interface Question<T> {
     answer(answer: T): void;
+    // TODO well, we're intentionally mixing view and logic levels here...
     render(onAnswer: (answer: T) => void): HTMLElement;
     recallAnswer(): void;
     isAnswered(): boolean;
