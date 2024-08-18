@@ -21,9 +21,9 @@ class Vocabulary {
     Chapter(
         "Счёт",
         List.of([
-          Word("Цеб", "Один",
+          const Word("Цеб", "Один",
               imgNotSetYet),
-          Word("Кlекlи", "Два",
+          const Word("Кlекlи", "Два",
               imgNotSetYet),
         ]),
         imgNotSetYet
@@ -31,13 +31,13 @@ class Vocabulary {
     Chapter(
       "Сезоны года",
       List.of([
-        Word("...", "Осень",
+        const Word("...", "Осень",
             imgNotSetYet),
-        Word("Регlи", "Лето",
+        const Word("Регlи", "Лето",
             imgNotSetYet),
-        Word("Гlелиб", "Весна",
+        const Word("Гlелиб", "Весна",
             imgNotSetYet),
-        Word("Цебир", "Зима",
+        const Word("Цебир", "Зима",
             imgNotSetYet),
       ]),
         imgNotSetYet
@@ -45,9 +45,9 @@ class Vocabulary {
     Chapter(
         "Семья",
         List.of([
-          Word("Ила", "Мама",
+          const Word("Ила", "Мама",
               "https://cdn-icons-png.freepik.com/256/4478/4478085.png"),
-          Word("Илабаба", "Бабушка",
+          const Word("Илабаба", "Бабушка",
               "https://cdn-icons-png.freepik.com/256/1155/1155223.png"),
         ]),
         imgNotSetYet

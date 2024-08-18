@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:namer_app/vocabulary/vocabulary.dart';
-import 'package:namer_app/widget/wordbook/chapter.dart' as ui;
+import 'package:tukita_learner/util.dart';
+import 'package:tukita_learner/vocabulary/vocabulary.dart';
+import 'package:tukita_learner/widget/wordbook/chapter.dart' as ui;
 
 class Wordbook extends StatelessWidget {
   final Vocabulary vocabulary = Vocabulary();
@@ -11,36 +12,33 @@ class Wordbook extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Словарь"),
+        title: const Text("Словарь"),
       ),
       body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Number of columns in the grid
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
           crossAxisSpacing: 10.0, // Spacing between columns
-          mainAxisSpacing: 10.0, // Spacing between rows
+          maxCrossAxisExtent: 250,
         ),
         itemCount: chapterNames.length,
         itemBuilder: (BuildContext context, int index) {
           String chapterName = chapterNames[index];
           final Chapter chapter = vocabulary.chapter(chapterName);
 
+          // TODO vertical spacing between columns
           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(child: Image.network(chapter.cover, width: 150)),
-                Text(chapterName),
-                ElevatedButton(
-                  onPressed: () {
-
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ui.Chapter(chapterName, chapter.words)));
-                  },
-                  child: Text('Открыть'),
-                ),
-              ],
-            ),
-          );
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(child: Image.network(chapter.cover, width: 150)),
+                  Text(chapterName),
+                  ElevatedButton(
+                    onPressed: () => openPage(ui.Chapter(chapterName, chapter.words), context),
+                    child: const Text('Открыть'),
+                  ),
+                ],
+              ),
+            );
         },
       ),
     );

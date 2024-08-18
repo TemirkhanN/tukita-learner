@@ -14,12 +14,12 @@ class Chapter extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(name)),
       body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 2,
               mainAxisSpacing: 1
           ),
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           itemCount: words.length,
           itemBuilder: (BuildContext context, int index) {
             return Center(

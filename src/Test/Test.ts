@@ -15,7 +15,7 @@ export default class Test {
         this.questions = questionList;
         this.currentQuestionNumber = 0;
         this.result = [];
-    };
+    }
 
     public getCurrentQuestion(): Question<any> | null {
         return this.questions[this.currentQuestionNumber] ?? null;

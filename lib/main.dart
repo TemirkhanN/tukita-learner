@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:namer_app/widget/wordbook/wordbook.dart';
+import 'package:tukita_learner/page/home.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
   // disableBrowserRightClicks();
 }
 
@@ -11,8 +11,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Routes are not recommended to be used by flutter official documentation
     return MaterialApp(
-        home: Wordbook()
-    );
+        // TODO adjust theme....
+        darkTheme: ThemeData.dark(),
+        theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)),
+        home: HomePage());
   }
 }
