@@ -113,7 +113,7 @@ class Test {
 }
 
 Test generateTranslationTest(List<Word> dictionary) {
-  const amountOfOptions = 4;
+  const amountOfOptions = 3;
 
   List<Question> questions = dictionary.map((Word word) {
     List<Option> options =
@@ -122,6 +122,8 @@ Test generateTranslationTest(List<Word> dictionary) {
             .toList();
 
     options.add(Option(word.translation, true));
+
+    options.shuffle();
 
     return ChoiceQuestion('Как сказать "${word.origin}?"', options);
   }).toList(growable: false);

@@ -70,8 +70,15 @@ class TestResult extends StatelessWidget {
               var question = result[index];
 
               return Row(children: [
+                Icon(
+                  question.isAnsweredCorrectly()
+                      ? Icons.check_box
+                      : Icons.details,
+                  color: question.isAnsweredCorrectly()
+                      ? Colors.green
+                      : Colors.yellow,
+                ),
                 Text(question.text()),
-                Text(question.isAnsweredCorrectly() ? "✅" : "⚠"),
               ]);
             }));
   }
