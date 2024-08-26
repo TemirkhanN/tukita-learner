@@ -19,6 +19,8 @@ class Lesson extends StatelessWidget {
         return const _Lesson2();
       case 3:
         return const _Lesson3();
+      case 4:
+        return const _Lesson4();
       default:
         throw UnsupportedError("Lesson $number is not supported");
     }
@@ -321,14 +323,64 @@ class _Lesson3 extends _LessonTemplate {
             onPressed: () => openPage(const _Lesson2(), context),
             child: const Text("← ${_Lesson2.name}")),
         ElevatedButton(
-            // TODO
+            onPressed: () => openPage(const _Lesson4(), context),
+            child: const Text("${_Lesson4.name} →")),
+      ],
+    );
+  }
+
+  Widget generateTest() {
+    var test = testModel.generateTranslationTest(_dictionary);
+
+    return testUI.Test(test);
+  }
+}
+
+class _Lesson4 extends _LessonTemplate {
+  static const String name = "Урок 4: составляем базовые предложения";
+
+  const _Lesson4() : super(name);
+
+  @override
+  Widget buildContent(BuildContext context) {
+    return Column(children: [
+      Text(
+          'Теперь, когда мы разобрались с местоименияи, пора приступать к простой практике.'
+          'Здесь будут первые ощутимые сложности, поскольку в тукитинском языке глаголы часто имеют непривычную форму для человека, говорящего по-русски.'
+          'Вместо "я покупаю хлеб" мы говорим "хлеб покупается мной". Не всегда, но очень часто.'
+          'Для желающих я предоставлю учебник с правилами, которые детально раскрывают тему, но в базовом курсе будут практические примеры.'),
+      Text("Базовый уровень\n", textScaler: TextScaler.linear(1.3)),
+      Text("[Когда-то] Я купил хлеб - динди гъани бигьибах букlа.\n"),
+      Text("[Сейчас] Я покупаю хлеб - динди гъани бигьида эгу.\n"),
+      Text("[Потом] Я куплю хлеб - динди гъани бигьеду эгу.\n\n"),
+      Text("Продвинутый уровень\n", textScaler: TextScaler.linear(1.3)),
+      Text(
+          "[Когда-то] Я купил хлеб [и это имеет имеет отношение к настоящему] - динди гъани бигьибах эгу."),
+      Text("[Когда-то] Я покупал хлеб - динди гъани бигьида букlа.\n"),
+      ElevatedButton(
+          onPressed: () => openPage(generateTest(), context),
+          child: const Text("Пройти тест")),
+    ]);
+  }
+
+  @override
+  Widget buildNavigation(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
             onPressed: () => openPage(const _Lesson3(), context),
+            child: const Text("← ${_Lesson2.name}")),
+        ElevatedButton(
+            // TODO
+            onPressed: () => openPage(const _Lesson4(), context),
             child: const Text("${_Lesson3.name} →")),
       ],
     );
   }
 
   Widget generateTest() {
+    // TODO
     var test = testModel.generateTranslationTest(_dictionary);
 
     return testUI.Test(test);
