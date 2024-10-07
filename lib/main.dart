@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/page/home.dart';
+import 'package:tukita_learner/router.dart';
 
 void main() {
   runApp(const MyApp());
-  // disableBrowserRightClicks();
 }
 
 class MyApp extends StatelessWidget {
@@ -12,12 +11,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Routes are not recommended to be used by flutter official documentation
-    return MaterialApp(
-        // TODO adjust theme....
-        darkTheme: ThemeData.dark(),
-        theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)),
-        home: HomePage());
+    return MaterialApp.router(
+      routerConfig: router,
+      // TODO adjust theme....
+      darkTheme: ThemeData.dark(),
+      theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)),
+    );
   }
 }

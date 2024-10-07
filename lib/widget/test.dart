@@ -1,26 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/test.dart' as testModel;
+import 'package:tukita_learner/test.dart';
+import 'package:tukita_learner/util.dart';
+import 'package:tukita_learner/vocabulary/vocabulary.dart';
 
-class Test extends StatefulWidget {
-  final testModel.Test _test;
+class StartTestButton extends StatelessWidget {
+  final TestWidget _test;
+  final String caption;
+  const StartTestButton(this._test, {this.caption = "Пройти тест"});
 
-  const Test(this._test);
+  StartTestButton.translation(List<Word> dictionary)
+      : this(TestWidget._translationTest(dictionary));
 
   @override
-  State<StatefulWidget> createState() {
-    return _TestState();
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () => openPage(_test, context), child: Text(caption));
   }
 }
 
-class _TestState extends State<Test> {
+class TestWidget extends StatefulWidget {
+  final Test _test;
+
+  const TestWidget(this._test);
+
+  @override
+  State<StatefulWidget> createState() {
+    return _TestWidgetState();
+  }
+
+  TestWidget._translationTest(List<Word> dictionary)
+      : this(TestGenerator.generateTranslationTest(dictionary));
+}
+
+class _TestWidgetState extends State<TestWidget> {
   @override
   Widget build(BuildContext context) {
-    testModel.Test currentTest = widget._test;
+    var currentTest = widget._test;
     if (currentTest.isFinished()) {
       return TestResult(currentTest);
     }
 
-    testModel.Question question = currentTest.getCurrentQuestion()!;
+    // TODO doable via PageView widget. Maybe even better that way
+    Question question = currentTest.getCurrentQuestion()!;
 
     return Scaffold(
         appBar: AppBar(
@@ -31,12 +52,12 @@ class _TestState extends State<Test> {
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           itemBuilder: (BuildContext context, int index) {
-            testModel.Option option = question.getOption(index);
+            Option option = question.getOption(index);
             return TextButton(
                 child: Text(option.value),
                 onPressed: () {
                   setState(() {
-                    currentTest.provideAnswer(testModel.Answer(value: index));
+                    currentTest.provideAnswer(Answer(value: index));
                   });
                 });
           },
@@ -45,7 +66,7 @@ class _TestState extends State<Test> {
 }
 
 class TestResult extends StatelessWidget {
-  final testModel.Test test;
+  final Test test;
 
   const TestResult(this.test);
 

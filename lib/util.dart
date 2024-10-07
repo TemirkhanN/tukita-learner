@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+// TODO extension?
 void openPage(Widget page, BuildContext withContext) {
   Navigator.push(withContext, MaterialPageRoute(builder: (context) => page));
 }

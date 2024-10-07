@@ -17,106 +17,52 @@ class Chapter {
 const imgNotSetYet = "https://cdn-icons-png.freepik.com/256/720/720315.png";
 
 class Vocabulary {
-  final List<Chapter> chapters = List.of([
+  const Vocabulary();
+
+  final List<Chapter> chapters = const [
     Chapter(
-        "Счёт",
-        List.of([
-          const Word("Цеб", "Один",
-              imgNotSetYet),
-          const Word("Кlекlи", "Два",
-              imgNotSetYet),
-        ]),
-        imgNotSetYet
+      "Счёт",
+      [
+        Word("Цеб", "Один", imgNotSetYet),
+        Word("Кlекlи", "Два", imgNotSetYet),
+      ],
+      imgNotSetYet,
     ),
     Chapter(
-      "Сезоны года",
-      List.of([
-        const Word("...", "Осень",
-            imgNotSetYet),
-        const Word("Регlи", "Лето",
-            imgNotSetYet),
-        const Word("Гlелиб", "Весна",
-            imgNotSetYet),
-        const Word("Цебир", "Зима",
-            imgNotSetYet),
-      ]),
-        imgNotSetYet
-    ),
+        "Сезоны года",
+        [
+          Word("...", "Осень", imgNotSetYet),
+          Word("Регlи", "Лето", imgNotSetYet),
+          Word("Гlелиб", "Весна", imgNotSetYet),
+          Word("Цебир", "Зима", imgNotSetYet),
+        ],
+        imgNotSetYet),
     Chapter(
         "Семья",
-        List.of([
-          const Word("Ила", "Мама",
+        [
+          Word("Ила", "Мама",
               "https://cdn-icons-png.freepik.com/256/4478/4478085.png"),
-          const Word("Илабаба", "Бабушка",
+          Word("Илабаба", "Бабушка",
               "https://cdn-icons-png.freepik.com/256/1155/1155223.png"),
-        ]),
-        imgNotSetYet
-    ),
-    Chapter(
-      "Эмоции",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Тело",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Одежда",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Аксессуары",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Дом/Жилье",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Природа(море, озеро, пляж, ",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Погода",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Кухня",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Огород",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Животные",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Еда",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Фрукты",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Овощи",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Школа",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Спорт",
-      List.empty(),imgNotSetYet
-    ),
-    Chapter(
-      "Музыка",
-      List.empty(),imgNotSetYet
-    ),
-  ]);
+        ],
+        imgNotSetYet),
+    Chapter("Эмоции", [], imgNotSetYet),
+    Chapter("Тело", [], imgNotSetYet),
+    Chapter("Одежда", [], imgNotSetYet),
+    Chapter("Аксессуары", [], imgNotSetYet),
+    Chapter("Дом/Жилье", [], imgNotSetYet),
+    Chapter("Природа(море, озеро, пляж, ", [], imgNotSetYet),
+    Chapter("Погода", [], imgNotSetYet),
+    Chapter("Кухня", [], imgNotSetYet),
+    Chapter("Огород", [], imgNotSetYet),
+    Chapter("Животные", [], imgNotSetYet),
+    Chapter("Еда", [], imgNotSetYet),
+    Chapter("Фрукты", [], imgNotSetYet),
+    Chapter("Овощи", [], imgNotSetYet),
+    Chapter("Школа", [], imgNotSetYet),
+    Chapter("Спорт", [], imgNotSetYet),
+    Chapter("Музыка", [], imgNotSetYet),
+  ];
 
   Chapter chapter(String chapterName) {
     return chapters.firstWhere((chapter) => chapter.name == chapterName);

@@ -4,7 +4,9 @@ import 'package:tukita_learner/vocabulary/vocabulary.dart';
 import 'package:tukita_learner/widget/wordbook/chapter.dart' as ui;
 
 class Wordbook extends StatelessWidget {
-  final Vocabulary vocabulary = Vocabulary();
+  final Vocabulary vocabulary = const Vocabulary();
+
+  const Wordbook({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +28,20 @@ class Wordbook extends StatelessWidget {
 
           // TODO vertical spacing between columns
           return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(child: Image.network(chapter.cover, width: 150)),
-                  Text(chapterName),
-                  ElevatedButton(
-                    onPressed: () => openPage(ui.Chapter(chapterName, chapter.words), context),
-                    child: const Text('Открыть'),
-                  ),
-                ],
-              ),
-            );
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(child: Image.network(chapter.cover, width: 150)),
+                Text(chapterName),
+                ElevatedButton(
+                  onPressed: () =>
+                      openPage(ui.Chapter(chapterName, chapter.words), context),
+                  child: const Text('Открыть'),
+                ),
+              ],
+            ),
+          );
         },
       ),
     );

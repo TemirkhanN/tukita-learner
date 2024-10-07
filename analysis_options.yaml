@@ -9,5 +9,3 @@ linter:
     prefer_final_fields: true
     unnecessary_breaks: false
     use_key_in_widget_constructors: false
-    # Man, 80 chars within flutter is a complete disaster
-    lines_longer_than_80_chars: true

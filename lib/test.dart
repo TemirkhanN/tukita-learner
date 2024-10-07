@@ -112,21 +112,23 @@ class Test {
   }
 }
 
-Test generateTranslationTest(List<Word> dictionary) {
-  const amountOfOptions = 3;
+class TestGenerator {
+  static Test generateTranslationTest(List<Word> dictionary) {
+    const amountOfOptions = 3;
 
-  List<Question> questions = dictionary.map((Word word) {
-    List<Option> options =
-        randomValues(amountOfOptions, dictionary, excluding: word)
-            .map((randomWord) => Option(randomWord.translation, false))
-            .toList();
+    List<Question> questions = dictionary.map((Word word) {
+      List<Option> options =
+          randomValues(amountOfOptions, dictionary, excluding: word)
+              .map((randomWord) => Option(randomWord.translation, false))
+              .toList();
 
-    options.add(Option(word.translation, true));
+      options.add(Option(word.translation, true));
 
-    options.shuffle();
+      options.shuffle();
 
-    return ChoiceQuestion('Как сказать "${word.origin}?"', options);
-  }).toList(growable: false);
+      return ChoiceQuestion('Как сказать "${word.origin}?"', options);
+    }).toList(growable: false);
 
-  return Test(questions);
+    return Test(questions);
+  }
 }
