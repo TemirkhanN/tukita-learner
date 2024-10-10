@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/widget/lesson_template.dart';
+import 'package:tukita_learner/screen/chapter.dart';
+import 'package:tukita_learner/widget/chapter_template.dart';
 
 class HowtoUseWhereto extends StatelessWidget {
-  static const String name = "Урок 8: вопросы \"куда\"";
+  static const ChapterRef reference = ChapterRef("how-to-use-where-to", 'Вопросы "куда"');
 
   const HowtoUseWhereto();
 
   @override
   Widget build(BuildContext context) {
-    return const LessonTemplate(
-        name,
+    return ChapterTemplate(
+        reference.description,
         Text("Здесь мы научимся говорить о направлении. С вопросом \"гьанди"
             "(куда) чаще всего используется глагол \"вуалълъа эгу\"(иду сейчас)."
             /*Например, куда идет мальчик - вохьа гьанди вуалълъа эгув?

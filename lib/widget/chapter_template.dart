@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class LessonTemplate extends StatelessWidget {
+class ChapterTemplate extends StatelessWidget {
   final String name;
   final Widget content;
 
-  const LessonTemplate(this.name, this.content);
+  const ChapterTemplate(this.name, this.content);
 
   @override
   Widget build(BuildContext context) {

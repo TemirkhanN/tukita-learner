@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/widget/lesson_template.dart';
+import 'package:tukita_learner/screen/chapter.dart';
+import 'package:tukita_learner/widget/chapter_template.dart';
 
 class HowtoUseWhere extends StatelessWidget {
-  static const String name = 'Урок 7: вопрос "где"';
+  static const ChapterRef reference = ChapterRef("how-to-use-where", 'Вопрос "где"');
 
   const HowtoUseWhere();
 
   @override
   Widget build(BuildContext context) {
-    return const LessonTemplate(
-        name,
-        Text("Здесь мы научимся вопросу \"где\" и как на него отвечать."
+    return ChapterTemplate(
+        reference.description,
+        const Text("Здесь мы научимся вопросу \"где\" и как на него отвечать."
 
 /*        Брат, ты где - ваци, мини гьанкlу эгув?
         Сестра, ты где - йаци, мини гьанкlу эгуй?

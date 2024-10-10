@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/screen/lesson.dart';
-import 'package:tukita_learner/widget/lesson_navigation.dart';
-import 'package:tukita_learner/widget/lesson_template.dart';
+import 'package:tukita_learner/screen/chapter.dart';
+import 'package:tukita_learner/screen/chapter/popular_words.dart';
+import 'package:tukita_learner/screen/chapter/question_words.dart';
+import 'package:tukita_learner/widget/chapter_navigation.dart';
+import 'package:tukita_learner/widget/chapter_template.dart';
 
 class HowtoUseWhoAndWhat extends StatelessWidget {
-  static const String name = 'Урок 6: вопросы "кто/что" и "кем/чем"';
+  static const ChapterRef reference = ChapterRef("how-to-use-who-and-what", 'Вопросы "кто/что" и "кем/чем"');
 
   const HowtoUseWhoAndWhat();
 
   @override
   Widget build(BuildContext context) {
-    return LessonTemplate(
-        name,
+    return ChapterTemplate(
+        reference.description,
         Column(children: [
-          const Text(
-              'Здесь мы научимся правильно задавать вопрос "кто" и "что", а также отвечать на них.'
+          const Text('Здесь мы научимся правильно задавать вопрос "кто" и "что", а также отвечать на них.'
               'Вопрос "Ты кто?" выглядит следующим образом: '
               'Мини чув эгув? Мини - ты. Чув - кто, но буква "в" в конце указывает на то, что спрашивают мужчину.'
               'То же самое с "эгуВ" (быть/являться). Если бы вопрос задавали женщине, то использовалось бы "чуЙ" и "эгуЙ".'
@@ -22,12 +23,8 @@ class HowtoUseWhoAndWhat extends StatelessWidget {
               'Например, вашей маме звонит тётя, вы взяли телефон и передаете его маме, она у вас спрашивает "чув эгув?"(кто это?) или "чув гарда эгув?"(кто звонит?).'),
           const Divider(),
           DataTable(columns: const [
-            DataColumn(
-                label: Text("-"),
-                headingRowAlignment: MainAxisAlignment.center),
-            DataColumn(
-                label: Text("-"),
-                headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("-"), headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("-"), headingRowAlignment: MainAxisAlignment.center),
           ], rows: const [
             DataRow(cells: [
               DataCell(Text("Чуб ги эгуб?")),
@@ -58,8 +55,8 @@ class HowtoUseWhoAndWhat extends StatelessWidget {
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              LessonNavigationButton(LessonName.popularWords),
-              //LessonNavigationButton(lessonId: 4, caption: QuestionWords.name),
+              ChapterNavigationButton(PopularWords.reference),
+              ChapterNavigationButton(QuestionWords.reference),
             ],
           ),
         ]));

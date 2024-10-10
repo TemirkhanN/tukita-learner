@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:tukita_learner/router.dart';
+import 'package:tukita_learner/screen/chapter.dart';
 import 'package:tukita_learner/vocabulary/vocabulary.dart';
-import 'package:tukita_learner/widget/lesson_template.dart';
+import 'package:tukita_learner/widget/chapter_template.dart';
 
 class PopularWords extends StatelessWidget {
-  static const String name = "Урок 5: часто используемые слова";
+  static const ChapterRef reference = ChapterRef("popular-words", "Часто используемые слова");
 
   static const List<Word> words = [
     Word('я', 'дини', ''),
@@ -22,21 +23,16 @@ class PopularWords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LessonTemplate(
-        name,
+    return ChapterTemplate(
+        reference.description,
         Column(children: [
-          const Text(
-              'В повседневной жизни мы общаемся очень ограниченным количеством слов.'
+          const Text('В повседневной жизни мы общаемся очень ограниченным количеством слов.'
               'Поэтому, если выучить десяток-другой популярныхслов и глаголов, вы уже сможете бегло изъясняться.'),
           const Divider(),
           DataTable(
             columns: const [
-              DataColumn(
-                  label: Text("Слово"),
-                  headingRowAlignment: MainAxisAlignment.center),
-              DataColumn(
-                  label: Text("Значение"),
-                  headingRowAlignment: MainAxisAlignment.center),
+              DataColumn(label: Text("Слово"), headingRowAlignment: MainAxisAlignment.center),
+              DataColumn(label: Text("Значение"), headingRowAlignment: MainAxisAlignment.center),
             ],
             rows: const [
               DataRow(cells: [
@@ -86,9 +82,7 @@ class PopularWords extends StatelessWidget {
             ],
           ),
           const Divider(),
-          ElevatedButton(
-              onPressed: context.goToWordBook,
-              child: const Text("Словарь слов")),
+          ElevatedButton(onPressed: context.openWordbook, child: const Text("Словарь слов")),
         ]));
   }
 }

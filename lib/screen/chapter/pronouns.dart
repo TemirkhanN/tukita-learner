@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/screen/lesson.dart';
+import 'package:tukita_learner/screen/chapter.dart';
+import 'package:tukita_learner/screen/chapter/basic_sentences.dart';
+import 'package:tukita_learner/screen/chapter/question_words.dart';
 import 'package:tukita_learner/vocabulary/vocabulary.dart';
-import 'package:tukita_learner/widget/lesson_navigation.dart';
-import 'package:tukita_learner/widget/lesson_template.dart';
+import 'package:tukita_learner/widget/chapter_navigation.dart';
+import 'package:tukita_learner/widget/chapter_template.dart';
 import 'package:tukita_learner/widget/test.dart';
 
 class Pronouns extends StatelessWidget {
-  static const String name = "Урок 3: местоимения";
+  static const ChapterRef reference = ChapterRef("pronouns", "Местоимения");
 
   final List<Word> _dictionary = const [
     Word('я', 'дини', ''),
@@ -24,23 +26,16 @@ class Pronouns extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LessonTemplate(
-      name,
+    return ChapterTemplate(
+      reference.description,
       Column(children: [
-        const Text(
-            "Здесь я должен дать оговорку: не нужно пытаться выучить всё и сразу - это малоэффективно и только утомит вас. Просто держите поблизости, как шпаргалку."
+        const Text("Здесь я должен дать оговорку: не нужно пытаться выучить всё и сразу - это малоэффективно и только утомит вас. Просто держите поблизости, как шпаргалку."
             "Для начала следует ограничиться местоимениями я, ты, он, она, оно из первых двух столбцов, а к остальным переходить позже, по мере необходимости."),
         DataTable(
           columns: const [
-            DataColumn(
-                label: Text("Кто"),
-                headingRowAlignment: MainAxisAlignment.center),
-            DataColumn(
-                label: Text("Кем"),
-                headingRowAlignment: MainAxisAlignment.center),
-            DataColumn(
-                label: Text("Кому"),
-                headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("Кто"), headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("Кем"), headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("Кому"), headingRowAlignment: MainAxisAlignment.center),
           ],
           rows: const [
             DataRow(cells: [
@@ -89,15 +84,9 @@ class Pronouns extends StatelessWidget {
         const Text("Дополнительные местоимения"),
         DataTable(
           columns: const [
-            DataColumn(
-                label: Text("к кому"),
-                headingRowAlignment: MainAxisAlignment.center),
-            DataColumn(
-                label: Text("у кого"),
-                headingRowAlignment: MainAxisAlignment.center),
-            DataColumn(
-                label: Text("?"),
-                headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("к кому"), headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("у кого"), headingRowAlignment: MainAxisAlignment.center),
+            DataColumn(label: Text("?"), headingRowAlignment: MainAxisAlignment.center),
           ],
           rows: const [
             DataRow(cells: [
@@ -146,8 +135,8 @@ class Pronouns extends StatelessWidget {
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            LessonNavigationButton(LessonName.questionWords),
-            LessonNavigationButton(LessonName.basicSentences),
+            ChapterNavigationButton(QuestionWords.reference),
+            ChapterNavigationButton(BasicSentences.reference),
           ],
         ),
       ]),

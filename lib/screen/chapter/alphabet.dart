@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:tukita_learner/screen/lesson.dart';
-import 'package:tukita_learner/widget/lesson_navigation.dart';
-import 'package:tukita_learner/widget/lesson_template.dart';
+import 'package:tukita_learner/screen/chapter.dart';
+import 'package:tukita_learner/screen/chapter/question_words.dart';
+import 'package:tukita_learner/widget/chapter_navigation.dart';
+import 'package:tukita_learner/widget/chapter_template.dart';
 import 'package:tukita_learner/widget/youtube.dart';
 
 class Alphabet extends StatelessWidget {
-  static const String name = "Урок 1: алфавит";
+  static const ChapterRef reference = ChapterRef("alphabet", "Алфавит");
 
   const Alphabet();
 
   @override
   Widget build(BuildContext context) {
-    return const LessonTemplate(
-        name,
-        Column(
+    return ChapterTemplate(
+        reference.description,
+        const Column(
           children: [
             Column(children: [
               Text(
@@ -32,7 +33,7 @@ class Alphabet extends StatelessWidget {
             ]),
             Row(
               children: [
-                LessonNavigationButton(LessonName.questionWords),
+                ChapterNavigationButton(QuestionWords.reference),
               ],
             ),
           ],
