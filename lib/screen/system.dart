@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tukita_learner/widget/template.dart';
 
 class SystemMessage extends StatelessWidget {
   final String message;
@@ -10,7 +11,7 @@ class SystemMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(message)),
-      body: Text(details),
+      body: MobileTemplate(body: Text(details)),
     );
   }
 }

@@ -14,8 +14,8 @@ class Alphabet extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChapterTemplate(
         reference.description,
-        const Column(
-          children: [
+        ListView(
+          children: const [
             Column(children: [
               Text(
                 "В тукитинском языке присутствуют все буквы русского алфавита, плюс особенные комбинации."

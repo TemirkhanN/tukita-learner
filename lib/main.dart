@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple),
-          textTheme: TextTheme(
+          textTheme: const TextTheme(
             bodySmall: TextStyle(fontSize: 12),
             bodyMedium: TextStyle(fontSize: 14),
             bodyLarge: TextStyle(fontSize: 16),

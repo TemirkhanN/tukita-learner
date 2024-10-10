@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tukita_learner/router.dart';
 import 'package:tukita_learner/screen/chapter.dart';
+import 'package:tukita_learner/widget/template.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -10,14 +11,8 @@ class HomePage extends StatelessWidget {
         title: const Text("Изучение тукитинского языка"),
       ),
       body: LayoutBuilder(builder: (context, constraints) {
-        double maxWidth = 500.0;
-
-        return Center(
-            child: SingleChildScrollView(
-                child: Container(
-          width: constraints.maxWidth > maxWidth ? maxWidth : constraints.maxWidth,
-          padding: const EdgeInsets.all(5),
-          child: Column(children: [
+        return MobileTemplate(
+          body: ListView(children: [
             const Text(
               "Это краш-курс тукитинского языка. Наша задача максимально быстро научить вас понимать тукитинский и, по-возможности, говорить на нем."
               "Данный материал не подходит филологам - систематизация, которую мы будем использовать, не совпадает с общепринятой практикой."
@@ -27,9 +22,11 @@ class HomePage extends StatelessWidget {
               softWrap: true,
             ),
             ListTile(onTap: context.openWordbook, title: const Text("Словарь")),
-            ...TableOfContents.list().map((ch) => ListTile(title: Text(ch.description), onTap: () => context.openChapter(ch))),
+            ...TableOfContents.list().map((ch) => ListTile(
+                title: Text(ch.description),
+                onTap: () => context.openChapter(ch))),
           ]),
-        )));
+        );
       }),
     );
   }

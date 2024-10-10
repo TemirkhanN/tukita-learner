@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tukita_learner/widget/template.dart';
 
 class ChapterTemplate extends StatelessWidget {
   final String name;
@@ -10,10 +11,8 @@ class ChapterTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(name)),
-        body: SingleChildScrollView(
-            child: Padding(
-          padding: const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-          child: content,
-        )));
+        body: MobileTemplate(
+          body: content,
+        ));
   }
 }

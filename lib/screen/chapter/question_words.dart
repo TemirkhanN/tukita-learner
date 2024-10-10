@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tukita_learner/screen/chapter.dart';
-import 'package:tukita_learner/screen/chapter/alphabet.dart';
 import 'package:tukita_learner/screen/chapter/pronouns.dart';
 import 'package:tukita_learner/vocabulary/vocabulary.dart';
 import 'package:tukita_learner/widget/chapter_navigation.dart';
@@ -8,7 +7,8 @@ import 'package:tukita_learner/widget/chapter_template.dart';
 import 'package:tukita_learner/widget/test.dart';
 
 class QuestionWords extends StatelessWidget {
-  static const ChapterRef reference = ChapterRef("question-words", "Вопросительные слова");
+  static const ChapterRef reference =
+      ChapterRef("question-words", "Вопросительные слова");
 
   static const List<Word> _dictionary = [
     Word('что', 'чуб', ''),
@@ -31,8 +31,9 @@ class QuestionWords extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChapterTemplate(
         reference.description,
-        Column(children: [
-          const Text("Для общения очень часто нужны уточнения и вопросы. Постарайтесь запомнить следующие слова, которые вам в этом помогут.\n"
+        ListView(children: [
+          const Text(
+              "Для общения очень часто нужны уточнения и вопросы. Постарайтесь запомнить следующие слова, которые вам в этом помогут.\n"
               "Вы будете часто их использовать, поэтому можно держать этот список под рукой.\n"
               "что - чуб\n"
               "кто(он) - чув\n"
@@ -50,7 +51,6 @@ class QuestionWords extends StatelessWidget {
           const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ChapterNavigationButton(Alphabet.reference),
               ChapterNavigationButton(Pronouns.reference),
             ],
           ),

@@ -42,18 +42,23 @@ class TableOfContents {
     if (chapterId == Pronouns.reference.id) {
       return const Pronouns();
     }
+
     if (chapterId == BasicSentences.reference.id) {
       return const BasicSentences();
     }
+
     if (chapterId == PopularWords.reference.id) {
       return const PopularWords();
     }
+
     if (chapterId == HowtoUseWhoAndWhat.reference.id) {
       return const HowtoUseWhoAndWhat();
     }
+
     if (chapterId == HowtoUseWhere.reference.id) {
       return const HowtoUseWhere();
     }
+
     if (chapterId == HowtoUseWhereto.reference.id) {
       return const HowtoUseWhereto();
     }
